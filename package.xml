@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>easy_aruco</name>
+  <version>0.0.0</version>
+  <description>Yet another ArUco tracking package for ROS</description>
+
+  <author email="esposito@imfusion.com">Marco Esposito</author>
+  <maintainer email="esposito@imfusion.com">Marco Esposito</maintainer>
+
+  <license>LGPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>opencv3</depend>
+  <depend>cv_bridge</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <exec_depend>python-click</exec_depend>
+
+</package>

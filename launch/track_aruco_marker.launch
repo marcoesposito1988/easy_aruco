@@ -1,0 +1,21 @@
+<launch>
+    <arg name="camera_namespace" default="/camera" doc="The topic namespace containing the camera's camera_info and image_rect_color topics" />
+    <arg name="dictionary" doc="The OpenCV ID of the ArUco dictionary used to create the marker (e.g. DICT_6X6_250)" />
+
+    <arg name="camera_frame" doc="The tf frame corresponding to the optical frame of the RGB camera" />
+    <arg name="reference_frame" default="" doc="The tf frame with respect to which the pose will be published" />
+
+    <arg name="marker_size" doc="The size of the marker (in meters)" />
+
+    <node pkg="easy_aruco" type="easy_aruco_node" name="easy_aruco_node" >
+        <param name="object_type" value="aruco_marker" />
+
+        <param name="camera_namespace" value="$(arg camera_namespace)" />
+        <param name="dictionary" value="$(arg dictionary)" />
+
+        <param name="camera_frame" value="$(arg camera_frame)" />
+        <param name="reference_frame" value="$(arg reference_frame)" />
+
+        <param name="marker_size" value="$(arg marker_size)" />
+    </node>
+</launch>
