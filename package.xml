@@ -10,7 +10,7 @@
   <license>LGPLv3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <depend>opencv3</depend>
+  <depend>libopencv-dev</depend>
   <depend>cv_bridge</depend>
   <depend>sensor_msgs</depend>
   <depend>tf2_ros</depend>
