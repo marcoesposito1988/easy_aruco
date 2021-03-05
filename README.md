@@ -27,6 +27,8 @@ source /opt/ros/$ROSDISTRO/devel/setup.bash
 mkdir -p catkin_ws/src
 cd catkin_ws/src
 
+pip install --user fpdf opencv-contrib-python
+
 # check out the repository, satisfy the dependencies and build
 git clone https://github.com/marcoesposito1988/easy_aruco
 cd ..
