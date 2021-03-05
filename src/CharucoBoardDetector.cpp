@@ -84,7 +84,7 @@ void CharucoBoardDetector::onImageImpl(const sensor_msgs::ImageConstPtr &img) {
     cv_bridge::CvImage imageOutputBridge;
     imageOutputBridge.image = imageOutput;
     imageOutputBridge.header = img->header;
-    imageOutputBridge.encoding = img->encoding;
+    imageOutputBridge.encoding = sensor_msgs::image_encodings::RGB8;
 
     debugImagePublisher.publish(imageOutputBridge.toImageMsg());
   }
