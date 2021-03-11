@@ -37,7 +37,7 @@ catkin build
 source devel/setup.bash
 ```
 
-- generate a ChArUco board:
+- generate a ChArUco board (or download the result of this command [here](docs/data/board_7x9_sq24_mk16_DICT_6x6_250.pdf)):
 ```bash
 # example parameters: 5x7 chessboard, squares 40mm and markers 20mm big
 rosrun easy_aruco create_charuco_board.py --dictionary  DICT_6X6_250 --squares_x 7 --squares_y 9 --square_size 24 --marker_size 16 --output_path ~/charuco_board.pdf
