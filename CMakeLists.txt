@@ -29,7 +29,7 @@ target_link_libraries(${PROJECT_NAME}_node
         ${OpenCV_LIBS}
         )
 
-install(PROGRAMS
+catkin_install_python(PROGRAMS
         scripts/create_charuco_board.py
         scripts/create_aruco_marker.py
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
