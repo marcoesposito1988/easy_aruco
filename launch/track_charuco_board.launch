@@ -10,7 +10,7 @@
     <arg name="square_number_x" doc="The number of squares in the x direction" />
     <arg name="square_number_y" doc="The number of squares in the y direction" />
 
-    <node pkg="easy_aruco" type="easy_aruco_node" name="easy_aruco_node" >
+    <node pkg="easy_aruco" type="easy_aruco_node" name="easy_aruco_node" output="screen" >
         <param name="object_type" value="charuco_board" />
 
         <param name="camera_namespace" value="$(arg camera_namespace)" />
