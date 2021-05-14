@@ -7,7 +7,7 @@
 
     <arg name="marker_size" doc="The size of the marker (in meters)" />
 
-    <node pkg="easy_aruco" type="easy_aruco_node" name="easy_aruco_node" >
+    <node pkg="easy_aruco" type="easy_aruco_node" name="easy_aruco_node" output="screen" >
         <param name="object_type" value="aruco_marker" />
 
         <param name="camera_namespace" value="$(arg camera_namespace)" />
