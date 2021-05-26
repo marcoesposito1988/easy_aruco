@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(easy_aruco)
 
-find_package(catkin REQUIRED COMPONENTS sensor_msgs cv_bridge tf2_ros tf2_geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS sensor_msgs cv_bridge tf2_ros tf2_geometry_msgs visualization_msgs)
 
 find_package(OpenCV REQUIRED)
 
@@ -41,3 +41,4 @@ install(TARGETS ${PROJECT_NAME}_node
         LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
         )
+

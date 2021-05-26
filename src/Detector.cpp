@@ -52,7 +52,6 @@ void Detector::onImage(const sensor_msgs::ImageConstPtr &img) {
 }
 
 void Detector::start() {
-
   nh.param<string>("camera_namespace", cameraNamespace, "/camera");
   nh.param<string>("camera_frame", cameraFrame, "camera_rgb_optical_frame");
   nh.param<string>("reference_frame", referenceFrame, "camera_link");
@@ -68,6 +67,8 @@ void Detector::start() {
   listener = std::make_unique<tf2_ros::TransformListener>(buffer);
 
   debugImagePublisher = nh.advertise<sensor_msgs::Image>("debug_image", 1);
+  position_pub = nh.advertise<geometry_msgs::Vector3Stamped>("position", 100);
+  pose_pub = nh.advertise<geometry_msgs::PoseStamped>("pose", 100);
   cameraInfoSubscriberOnce =
       nh.subscribe(cameraInfoTopic, 1, &Detector::onCameraInfo, this);
 
