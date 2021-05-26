@@ -4,6 +4,8 @@
 #include "CharucoBoardDetector.h"
 #include <cv_bridge/cv_bridge.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <tf2/transform_datatypes.h>
+#include <opencv2/imgcodecs.hpp>
 
 using namespace cv;
 using namespace std;
@@ -24,6 +26,7 @@ void CharucoBoardDetector::startImpl() {
   board = cv::aruco::CharucoBoard::create(squareNumberX, squareNumberY,
                                           squareSideLengthMeters,
                                           markerSideLengthMeters, dictionary);
+
 }
 
 void CharucoBoardDetector::onImageImpl(const sensor_msgs::ImageConstPtr &img) {
@@ -48,6 +51,9 @@ void CharucoBoardDetector::onImageImpl(const sensor_msgs::ImageConstPtr &img) {
     boardDetected = cv::aruco::estimatePoseCharucoBoard(
         charucoCorners, charucoIds, board, cameraParameters->cameraMatrix,
         cameraParameters->distorsionCoeff, rvec, tvec);
+
+    cv::aruco::drawDetectedCornersCharuco(image->image, charucoCorners, charucoIds, cv::Scalar(255, 0, 0));
+
   }
 
   // publish to tf
@@ -68,6 +74,21 @@ void CharucoBoardDetector::onImageImpl(const sensor_msgs::ImageConstPtr &img) {
     cameraToBoardStamped.transform = tf2::toMsg(cameraToBoard);
 
     broadcaster->sendTransform(cameraToBoardStamped);
+
+    geometry_msgs::Vector3Stamped positionMsg;
+    positionMsg.header = cameraToBoardStamped.header;
+    positionMsg.vector = cameraToBoardStamped.transform.translation;
+    position_pub.publish(positionMsg);
+
+    geometry_msgs::PoseStamped poseMsg;
+    poseMsg.pose.orientation = cameraToBoardStamped.transform.rotation;
+    poseMsg.pose.position.x = cameraToBoardStamped.transform.translation.x;
+    poseMsg.pose.position.y = cameraToBoardStamped.transform.translation.y;
+    poseMsg.pose.position.z = cameraToBoardStamped.transform.translation.z;
+    poseMsg.header.frame_id = hdr.frame_id;
+    poseMsg.header.stamp = hdr.stamp;
+    pose_pub.publish(poseMsg);
+
   }
 
   // draw on debug image if anyone is interested in it

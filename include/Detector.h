@@ -6,6 +6,7 @@
 #include <ros/ros.h>
 #include <sensor_msgs/CameraInfo.h>
 #include <sensor_msgs/Image.h>
+#include <visualization_msgs/Marker.h>
 
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_ros/transform_listener.h>
@@ -38,5 +39,8 @@ protected:
   ros::Subscriber imageSubscriber;
   ros::Subscriber cameraInfoSubscriberOnce;
   ros::Publisher debugImagePublisher;
+  ros::Publisher position_pub;
+  ros::Publisher pose_pub;
   std::unique_ptr<CameraParameters> cameraParameters;
 };
+
