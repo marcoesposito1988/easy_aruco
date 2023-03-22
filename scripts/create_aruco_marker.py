@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-import tempfile
-from fpdf import FPDF
-import cv2
 import os
-import numpy as np
+import tempfile
+
 import click
+import cv2
+import numpy as np
+from fpdf import FPDF
 
 
 ARUCO_DICTIONARIES = (
@@ -23,10 +24,14 @@ ARUCO_DICTIONARIES = (
     'DICT_6X6_100',
     'DICT_6X6_250',
     'DICT_6X6_1000',
+    
+    'DICT_7X7_50',
+    'DICT_7X7_100',
+    'DICT_7X7_250',
+    'DICT_7X7_1000',
 
     'DICT_ARUCO_ORIGINAL',
 )
-
 
 @click.command()
 @click.option('--dictionary', prompt=True, type=click.Choice(ARUCO_DICTIONARIES), help='ArUco dictionary to be used to create the board')
@@ -46,7 +51,7 @@ def generate_marker(dictionary, marker_id, marker_size, output_path):
     if marker_size_m > A4_SIZE_m[0] or marker_size_m > A4_SIZE_m[1]:
         raise ValueError('given size exceeds A4')
 
-    aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_6X6_250)
+    aruco_dict = cv2.aruco.Dictionary_get(getattr(cv2.aruco, dictionary))
     imboard = cv2.aruco.drawMarker(aruco_dict, marker_id, marker_size_pixels[0])
 
     f = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
