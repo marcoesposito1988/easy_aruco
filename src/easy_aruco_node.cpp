@@ -1,4 +1,3 @@
-
 #include <ArucoMarkerDetector.h>
 #include <CharucoBoardDetector.h>
 
@@ -8,6 +7,7 @@ int main(int argc, char **argv) {
 
   std::string objectType;
   nh.getParam("object_type", objectType);
+
 
   std::unique_ptr<Detector> detector;
 
